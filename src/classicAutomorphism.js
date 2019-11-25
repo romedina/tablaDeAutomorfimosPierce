@@ -5,26 +5,46 @@ export const Automorphism = () => {
   const [inputVector, setInputVector] = useState([0, 1, 0, 1]);
   const [outputVector, setOutputVector] = useState([]);
 
+  const transformToX = vector => {
+    let auxVector = [null, null, null, null];
+
+    auxVector[0] = parseInt(vector[0], 2);
+    auxVector[1] = parseInt(vector[2], 2);
+    auxVector[2] = parseInt(vector[3], 2);
+    auxVector[3] = parseInt(vector[1], 2);
+
+    return auxVector;
+  };
+
   const morgan = vector => {
     let auxVector = [null, null, null, null];
 
-    auxVector[0] = !parseInt(vector[2]) ? 1 : 0;
-    auxVector[1] = !parseInt(vector[3]) ? 1 : 0;
-    auxVector[2] = !parseInt(vector[0]) ? 1 : 0;
-    auxVector[3] = !parseInt(vector[1]) ? 1 : 0;
+    auxVector[0] = !parseInt(vector[2], 2) ? 1 : 0;
+    auxVector[1] = !parseInt(vector[3], 2) ? 1 : 0;
+    auxVector[2] = !parseInt(vector[0], 2) ? 1 : 0;
+    auxVector[3] = !parseInt(vector[1], 2) ? 1 : 0;
+
+    return auxVector;
+  };
+
+  const sortOutput = vector => {
+    let auxVector = [null, null, null, null];
+
+    auxVector[0] = parseInt(vector[0], 2);
+    auxVector[1] = parseInt(vector[3], 2);
+    auxVector[2] = parseInt(vector[1], 2);
+    auxVector[3] = parseInt(vector[2], 2);
 
     return auxVector;
   };
 
   const handleClick = () => {
-    setOutputVector(morgan(inputVector));
+    setOutputVector(sortOutput(morgan(transformToX(inputVector))));
   };
 
   const handleChange = event => {
     setInputVector(event.target.value);
   };
-
-  console.log(inputVector);
 
   return (
     <React.Fragment>
