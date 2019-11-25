@@ -4,6 +4,8 @@ import { Grid, Button, TextField } from "@material-ui/core";
 export const Automorphism = () => {
   const [inputVector, setInputVector] = useState([0, 1, 0, 1]);
   const [outputVector, setOutputVector] = useState([]);
+  const [xVec, setXVec] = useState([]);
+  const [xOutputVec, setXOutputVec] = useState([]);
 
   const transformToX = vector => {
     let auxVector = [null, null, null, null];
@@ -40,6 +42,8 @@ export const Automorphism = () => {
 
   const handleClick = () => {
     setOutputVector(sortOutput(morgan(transformToX(inputVector))));
+    setXVec(transformToX(inputVector));
+    setXOutputVec(morgan(transformToX(inputVector)));
   };
 
   const handleChange = event => {
@@ -49,7 +53,7 @@ export const Automorphism = () => {
   return (
     <React.Fragment>
       <Grid container>
-        <Grid item xs={6}>
+        <Grid item xs={12}>
           <h2>el vector de entrada es </h2>
           <div>
             <TextField
@@ -63,8 +67,27 @@ export const Automorphism = () => {
             Obtener Dual
           </Button>
         </Grid>
-        <Grid item xs={6}>
-          <h2>el vector de salida es </h2>
+
+        <Grid item xs={4}>
+          <h2>el vector en X es </h2>
+          <div>
+            {xVec.map((elem, index) => {
+              return <span key={index}>{elem.toString()}</span>;
+            })}
+          </div>
+        </Grid>
+
+        <Grid item xs={4}>
+          <h2>el vector en X de salida es </h2>
+          <div>
+            {xOutputVec.map((elem, index) => {
+              return <span key={index}>{elem.toString()}</span>;
+            })}
+          </div>
+        </Grid>
+
+        <Grid item xs={4}>
+          <h2>el vector de salida ordenado es </h2>
           <div>
             {outputVector.map((elem, index) => {
               return <span key={index}>{elem.toString()}</span>;
