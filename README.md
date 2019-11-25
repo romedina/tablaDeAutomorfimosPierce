@@ -1,2 +1,0 @@
-# tablaDeAutomorfimosPierce
-Created with CodeSandbox
