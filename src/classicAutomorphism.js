@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Button, TextField } from "@material-ui/core";
+import { Grid, Button, TextField, Typography } from "@material-ui/core";
 
 export const Automorphism = () => {
   const [inputVector, setInputVector] = useState([0, 1, 0, 1]);
@@ -54,7 +54,7 @@ export const Automorphism = () => {
     <React.Fragment>
       <Grid container>
         <Grid item xs={12}>
-          <h2>el vector de entrada es </h2>
+          <Typography variant="h3">Automorfismo Clásico </Typography>
           <div>
             <TextField
               onChange={handleChange}
